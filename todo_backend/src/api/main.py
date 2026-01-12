@@ -24,6 +24,7 @@ def _parse_db_path_from_connection_file(file_contents: str) -> str:
     Expected format includes a line like:
     # File path: /abs/path/to/myapp.db
     """
+    print("This is parse db file")
     match = re.search(r"^\s*#\s*File path:\s*(.+?)\s*$", file_contents, flags=re.MULTILINE)
     if not match:
         raise ValueError("Could not find '# File path:' entry in db_connection.txt")
@@ -38,7 +39,7 @@ def _load_sqlite_db_path() -> str:
     # We want: task-tracker-.../database/db_connection.txt which is sibling of todo_backend.
     container_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
     db_connection_txt = os.path.abspath(os.path.join(container_root, "..", "database", "db_connection.txt"))
-
+    print("This is sqlite db path")
     try:
         with open(db_connection_txt, "r", encoding="utf-8") as f:
             contents = f.read()
